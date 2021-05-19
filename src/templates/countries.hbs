@@ -1,0 +1,14 @@
+<ul class="countries-list">
+  {{#each this}}
+    <li class="country-item">
+      {{! <svg  width="20" height="20">
+  <use href="../images/sprite.svg#checkbox"></use>
+</svg> }}
+      <img
+        src="https://img.icons8.com/plasticine/100/000000/checked-checkbox.png"
+        width="40"
+      />
+      <p class="country-name">{{name}}</p>
+    </li>
+  {{/each}}
+</ul>
