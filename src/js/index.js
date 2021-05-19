@@ -13,6 +13,9 @@ const { countryContainer, input } = refs;
 
 addPlaceholder();
 input.addEventListener("input", debounce(getRequestedCountryInfo, 500));
+countryContainer.addEventListener("click", onCountryClick);
+// countryContainer.addEventListener('keydown', onCountryPush);
+
 function getRequestedCountryInfo(e) {
   const name = e.target.value;
 
@@ -22,14 +25,7 @@ function getRequestedCountryInfo(e) {
     return;
   }
 
-  const apiService = new ApiService({
-    root: "https://restcountries.eu/rest/v2/name/",
-    query: name,
-    onResolved: makeMarkup,
-    onRejected: onError,
-  });
-
-  apiService.fetch();
+  fetchRequest(name);
 }
 
 function makeMarkup(data) {
@@ -50,6 +46,10 @@ function makeMarkup(data) {
     });
   } else {
     countryContainer.insertAdjacentHTML("beforeend", countriesMarkup(data));
+    // const listOfCountries = document.querySelectorAll(".country-link");
+    // listOfCountries.forEach((el) => {
+    //   el.addEventListener("keydown", onCountryPush);
+    // });
   }
 }
 
@@ -71,4 +71,33 @@ function addPlaceholder() {
     "beforeend",
     `<ul class="placeholder-list">${placeholderRow.repeat(4)}</ul>`
   );
+}
+
+function onCountryClick(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== "P") {
+    return;
+  }
+
+  const name = e.target.textContent;
+  fetchRequest(name);
+}
+
+// function onCountryPush(e) {
+//   e.preventDefault();
+//   if (e.code === "Enter" && e.target.nodeName === "A") {
+//     const name = e.target.lastElementChild.textContent;
+//     fetchRequest(name);
+//   }
+// }
+
+function fetchRequest(name) {
+  const apiService = new ApiService({
+    root: "https://restcountries.eu/rest/v2/name/",
+    query: name,
+    onResolved: makeMarkup,
+    onRejected: onError,
+  });
+
+  apiService.fetch();
 }
