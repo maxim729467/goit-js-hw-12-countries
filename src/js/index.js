@@ -83,13 +83,13 @@ function onCountryClick(e) {
   }
 
   if (e.target.nodeName === "IMG") {
-    const name = e.target.alt;
+    const name = e.target.nextElementSibling.textContent;
     fetchRequest(name);
     return;
   }
 
   if (e.target.nodeName === "A") {
-    const name = e.target.dataset.name;
+    const name = e.target.lastElementChild.textContent;
     fetchRequest(name);
   }
 }
