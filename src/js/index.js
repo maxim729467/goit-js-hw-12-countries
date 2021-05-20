@@ -14,7 +14,6 @@ const { countryContainer, input } = refs;
 addPlaceholder();
 input.addEventListener("input", debounce(getRequestedCountryInfo, 500));
 countryContainer.addEventListener("click", onCountryClick);
-// countryContainer.addEventListener('keydown', onCountryPush);
 
 function getRequestedCountryInfo(e) {
   const name = e.target.value;
@@ -46,10 +45,6 @@ function makeMarkup(data) {
     });
   } else {
     countryContainer.insertAdjacentHTML("beforeend", countriesMarkup(data));
-    // const listOfCountries = document.querySelectorAll(".country-link");
-    // listOfCountries.forEach((el) => {
-    //   el.addEventListener("keydown", onCountryPush);
-    // });
   }
 }
 
@@ -93,14 +88,6 @@ function onCountryClick(e) {
     fetchRequest(name);
   }
 }
-
-// function onCountryPush(e) {
-//   e.preventDefault();
-//   if (e.code === "Enter" && e.target.nodeName === "A") {
-//     const name = e.target.lastElementChild.textContent;
-//     fetchRequest(name);
-//   }
-// }
 
 function fetchRequest(name) {
   const apiService = new ApiService({
