@@ -94,6 +94,3 @@ function fetchRequest(name) {
 
   apiService.fetch();
 }
-
-// commit attempt from terminal
-// second attempt from terminal

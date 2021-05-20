@@ -36,5 +36,3 @@ export default class ApiService {
     }
   }
 }
-
-//second attempt from terminal
