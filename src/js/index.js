@@ -75,12 +75,23 @@ function addPlaceholder() {
 
 function onCountryClick(e) {
   e.preventDefault();
-  if (e.target.nodeName !== "P") {
+
+  if (e.target.nodeName === "P") {
+    const name = e.target.textContent;
+    fetchRequest(name);
     return;
   }
 
-  const name = e.target.textContent;
-  fetchRequest(name);
+  if (e.target.nodeName === "IMG") {
+    const name = e.target.alt;
+    fetchRequest(name);
+    return;
+  }
+
+  if (e.target.nodeName === "A") {
+    const name = e.target.dataset.name;
+    fetchRequest(name);
+  }
 }
 
 // function onCountryPush(e) {
