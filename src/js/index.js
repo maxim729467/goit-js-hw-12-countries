@@ -71,20 +71,14 @@ function addPlaceholder() {
 function onCountryClick(e) {
   e.preventDefault();
 
-  if (e.target.nodeName === "P") {
-    const name = e.target.textContent;
-    fetchRequest(name);
-    return;
-  }
-
   if (e.target.nodeName === "IMG") {
-    const name = e.target.nextElementSibling.textContent;
+    const name = e.target.parentNode.textContent;
     fetchRequest(name);
     return;
   }
 
   if (e.target.nodeName === "A") {
-    const name = e.target.lastElementChild.textContent;
+    const name = e.target.textContent;
     fetchRequest(name);
   }
 }
