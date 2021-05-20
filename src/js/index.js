@@ -95,6 +95,7 @@ function fetchRequest(name) {
   const apiService = new ApiService({
     root: "https://restcountries.eu/rest/v2/name/",
     query: name,
+    loaderSelector: ".loader",
     onResolved: makeMarkup,
     onRejected: onError,
   });
