@@ -16,7 +16,7 @@ input.addEventListener("input", debounce(getRequestedCountryInfo, 500));
 countryContainer.addEventListener("click", onCountryClick);
 
 function getRequestedCountryInfo(e) {
-  const name = e.target.value;
+  const name = e.target.value.trim();
 
   if (e.target.value.length === 0) {
     countryContainer.innerHTML = "";
